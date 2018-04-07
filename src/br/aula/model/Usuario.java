@@ -32,7 +32,7 @@ public class Usuario {
 	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "usuario")
-	private List<Review> review = new ArrayList<>();
+	private List<Review> reviews = new ArrayList<>();
 	
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimos;
@@ -41,10 +41,10 @@ public class Usuario {
 		this.emprestimos = emprestimos;
 	}
 	public List<Review> getReview() {
-		return review;
+		return reviews;
 	}
 	public void setReview(List<Review> review) {
-		this.review = review;
+		this.reviews = review;
 	}
 	public Long getUsuarioId() {
 		return usuarioId;

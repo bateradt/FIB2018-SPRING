@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.aula.DB.HibernateFactory;
+import br.aula.model.Autor;
 import br.aula.model.Livro;
 
 public class IncluindoLivro {
@@ -16,14 +17,31 @@ public class IncluindoLivro {
 //      Session s = sessionFactory.openSession();
 	
 		Session s = HibernateFactory.configureSessionFactory().openSession();
+		
+		/*Autor autor = (Autor) s.get(Autor.class, 4l);
 
 		Livro livro = new Livro();
 		livro.setFoto("livro1.jpg");
-		livro.setQuantidade(10);
-		livro.setTitulo("Java - Como Programar - 10ª Ed. 2016");
+		livro.setQuantidade(3);
+		livro.setTitulo("Sistemas Distribuidos");
+		livro.setAutor(autor);
 
 		Transaction t = s.beginTransaction();
 		s.save(livro);
+		t.commit();*/
+		
+		Autor autor = new Autor();
+		autor.setNome("JRR Tolkien");
+		
+		Livro livro = new Livro();
+		livro.setFoto("livro1.jpg");
+		livro.setQuantidade(3);
+		livro.setTitulo("Senhor dos Aneis");
+		livro.setAutor(autor);
+		
+		Transaction t = s.beginTransaction();
+		s.save(livro);
 		t.commit();
+		
 	}
 }

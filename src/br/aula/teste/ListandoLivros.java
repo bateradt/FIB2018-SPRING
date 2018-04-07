@@ -5,8 +5,9 @@ import org.hibernate.Transaction;
 
 import br.aula.DB.HibernateFactory;
 import br.aula.model.Autor;
+import br.aula.model.Livro;
 
-public class IncluindoAutor {
+public class ListandoLivros {
 
 	public static void main(String[] args) {		
 //		Configuration configuration = new Configuration();
@@ -16,26 +17,14 @@ public class IncluindoAutor {
 //      Session s = sessionFactory.openSession();
 	
 		Session s = HibernateFactory.configureSessionFactory().openSession();
-
-		Autor autor = new Autor();
-		autor.setNome("Tanenbaum"); //("Deitel Pearson");
+		
+		Livro livro = (Livro) s.get(Livro.class, 1l);
+		
+		System.out.println(livro.getTitulo());
+		System.out.println(livro.getAutor().getNome());
 
 		Transaction t = s.beginTransaction();
-		s.save(autor);
+		s.save(livro);
 		t.commit();
-		
-//		Autor autorA = new Autor();
-//		autorA.setNome("Pressman");
-//
-//		Transaction ta = s.beginTransaction();
-//		s.save(autorA);
-//		ta.commit();
-//		
-//		Autor autorB = new Autor();
-//		autorB.setNome("Paulo Coelho");
-//
-//		Transaction tb = s.beginTransaction();
-//		s.save(autorB);
-//		tb.commit();
 	}
 }

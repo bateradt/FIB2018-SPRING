@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="LIVRO")
 public class Livro {
@@ -32,6 +35,7 @@ public class Livro {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_AUTOR")
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Autor autor;
 	
 	@OneToMany(mappedBy = "livro")

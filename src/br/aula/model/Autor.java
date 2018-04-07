@@ -5,10 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="AUTOR")
@@ -22,7 +26,8 @@ public class Autor {
 	@Column(name = "AUT_NOME", nullable = false, length = 45)
 	private String Nome;
 	
-	@OneToMany(mappedBy = "autor")
+	@OneToMany(mappedBy = "autor", fetch = FetchType.EAGER)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Livro> livros = new ArrayList<>();
 	
 	public List<Livro> getLivros() {
